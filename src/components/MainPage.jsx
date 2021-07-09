@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Select from "react-select";
-
+import getEmails from "./../services/emailService";
 class MainPage extends Component {
   state = {
     selectedEmail: null,
-    options: [
+    emailOptions: [
       {
         value: "1",
         label: "EmailOne",
@@ -25,11 +25,24 @@ class MainPage extends Component {
     showOTPInputElement: false,
   };
 
+  async componentDidMount() {
+    const { data } = await getEmails();
+    const getEmailOptions =
+      Array.isArray(data) &&
+      data.map((element) => ({
+        value: element.Email,
+        label: element.Email,
+      }));
+    console.log("getEmailOptions", getEmailOptions);
+    this.setState({ emailOptions: getEmailOptions });
+  }
+
   handleChange = (value) => {
     this.setState({
       selectedEmail: value,
     });
   };
+
   generateOTP = () => {
     const Email = this.state.selectedEmail;
     //make an axios call
@@ -51,7 +64,7 @@ class MainPage extends Component {
         <Select
           value={this.state.selectedEmail}
           onChange={this.handleChange}
-          options={this.state.options}
+          options={this.state.emailOptions}
         />
         <div>
           Email:{" "}
