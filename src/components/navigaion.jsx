@@ -8,7 +8,7 @@ class Navigation extends Component {
     return (
       <React.Fragment>
         <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#home">Movies-Project</Navbar.Brand>
+          <Navbar.Brand href="#home">Telegram-Project</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
