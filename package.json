@@ -16,6 +16,7 @@
     "react-dom": "^16.8.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
+    "react-select": "^4.3.1",
     "react-toastify": "^5.0.0-rc.6",
     "reactstrap": "^8.0.0",
     "validator": "^10.11.0"

@@ -23,14 +23,8 @@ class Navigation extends Component {
                 </React.Fragment>
               )}
 
-              <Nav.Link href="../Movies" style={{ color: "#000000" }}>
-                Movies
-              </Nav.Link>
-              <Nav.Link href="../Customers" style={{ color: "#000000" }}>
-                Customers
-              </Nav.Link>
-              <Nav.Link href="../Rentals" style={{ color: "#000000" }}>
-                Rentals
+              <Nav.Link href="../MainPage" style={{ color: "#000000" }}>
+                MainPage
               </Nav.Link>
               {token && (
                 <Nav.Link href="../Logout" style={{ color: "#000000" }}>

@@ -4,6 +4,7 @@ import Navigation from "./components/navigaion";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/Register";
 import Logout from "./components/Logout";
+import MainPage from "./components/MainPage";
 const token = localStorage.getItem("token");
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
 
           <Route path="/LoginForm" component={LoginForm} />
           <Route path="/Logout" component={Logout} />
+          <Route path="/MainPage" component={MainPage} />
         </Switch>
       </React.Fragment>
     );
