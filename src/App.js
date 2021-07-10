@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import Navigation from "./components/navigaion";
-import LoginForm from "./components/LoginForm";
-import RegisterForm from "./components/Register";
-import Logout from "./components/Logout";
+import AddEmailForm from "./components/AddEmailForm";
 import MainPage from "./components/MainPage";
 const token = localStorage.getItem("token");
 
@@ -19,10 +17,7 @@ class App extends Component {
         <Navigation />
 
         <Switch>
-          {!token && <Route path="/RegisterForm" component={RegisterForm} />}
-
-          <Route path="/LoginForm" component={LoginForm} />
-          <Route path="/Logout" component={Logout} />
+          <Route path="/AddEmailForm" component={AddEmailForm} />
           <Route path="/MainPage" component={MainPage} />
         </Switch>
       </React.Fragment>
