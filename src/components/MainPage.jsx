@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import getEmails from "./../services/emailService";
+import { apiEndPoint } from "../config.json";
+import axios from "axios";
 class MainPage extends Component {
   state = {
     selectedEmail: null,
@@ -37,25 +39,53 @@ class MainPage extends Component {
     this.setState({ emailOptions: getEmailOptions });
   }
 
-  handleChange = (value) => {
+  handleChange = (SelectedEmail) => {
     this.setState({
-      selectedEmail: value,
+      selectedEmail: SelectedEmail,
     });
   };
 
-  generateOTP = () => {
-    const Email = this.state.selectedEmail;
+  generateOTP = async (e) => {
+    e.preventDefault();
     //make an axios call
-
-    //set state to show OTP inputButton
-    this.setState({ showOTPInputElement: true });
+    try {
+      const data = {
+        email: this.state.selectedEmail.value,
+      };
+      const result = await axios.post(apiEndPoint + "/OTPService/send", data);
+      console.log(result.data);
+      //set state to show OTP inputButton
+      this.setState({ showOTPInputElement: true });
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404) {
+        console.log("known error occourred", ex);
+      } else {
+        console.log("unknown error occourred", ex);
+      }
+    }
+  };
+  handleOTPEntered = (e) => {
+    e.preventDefault();
+    this.setState({ OTPEntered: e.currentTarget.value });
   };
 
-  submitOTP = () => {
+  submitOTP = async (e) => {
     //make an axios call
-
-    //set state to hide submit OTP section
-    this.setState({ showOTPInputElement: false });
+    try {
+      const data = {
+        otp: this.state.OTPEntered,
+      };
+      const result = await axios.post(apiEndPoint + "/OTPService/verify", data);
+      console.log(result.data);
+      //set state to hide submit OTP section
+      this.setState({ showOTPInputElement: false });
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404) {
+        console.log("known error occourred", ex);
+      } else {
+        console.log("unknown error occourred", ex);
+      }
+    }
   };
   render() {
     return (
@@ -88,7 +118,7 @@ class MainPage extends Component {
                 className="form-control"
                 id="EnterOTP"
                 placeholder="EnterOTP"
-                onChange={this.change}
+                onChange={this.handleOTPEntered}
               />
             </div>
             <button

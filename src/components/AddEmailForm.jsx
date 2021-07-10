@@ -36,10 +36,6 @@ class AddEmailForm extends Component {
       console.log(result.data);
       console.log("result in register=", result);
       toast.success(result.data, { autoClose: 1500 });
-      //const result = e.currentTarget.title;
-      setTimeout(() => {
-        this.props.history.replace("/movies");
-      }, 2000);
     } catch (ex) {
       if (ex.response && ex.response.status === 404) {
         console.log("known error occourred", ex);
